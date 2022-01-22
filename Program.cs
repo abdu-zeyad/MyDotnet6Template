@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Template.Data;
+using Template.Models;
+using Template.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     string connectionString = builder.Configuration.GetConnectionString("Default");
     options.UseSqlServer(connectionString);
 });
-
+builder.Services.AddTransient< IFood, FoodService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
